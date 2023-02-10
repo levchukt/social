@@ -1,0 +1,16 @@
+.header {
+    background-color: #344e41;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.header__container{
+}
+
+.logo{
+    text-decoration: none;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 700;
+}

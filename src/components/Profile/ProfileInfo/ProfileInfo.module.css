@@ -1,0 +1,22 @@
+.info{
+    background-color: #cfe1b9;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    border-bottom: 1px solid #243119;
+    box-shadow: inset 0px 0px 22px 0px #aceca1;
+}
+
+.avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid #243119;
+}
+
+.username{
+    font-size: 32px;
+    font-weight: 600;
+}

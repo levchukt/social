@@ -1,0 +1,31 @@
+.dialogs__chat {
+    padding: 10px 20px;
+    border: 1px solid #52796f;
+    transition: all 0.3s ease 0s;
+    border-radius: 30px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+}
+
+.dialogs__chat:hover {
+    box-shadow: 0 0 15px #80af8a;
+
+}
+
+.dialogs__chat:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.active {
+    box-shadow: 0 0 10px 5px #84a98c;
+}

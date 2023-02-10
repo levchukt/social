@@ -1,0 +1,69 @@
+.dialogs{
+    display: flex;
+    height: 100%;
+}
+
+.dialogs__chats{
+    flex: 0 0 20%;
+    padding: 20px 10px;
+    background-color: #cad2c5;
+    border: 1px solid #8d9289;
+    box-shadow: 1px 0 3px rgb(132, 132, 132);
+}
+
+.title{
+    padding: 10px  30px;
+    position: relative;
+}
+
+.title::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(151, 151, 151);
+    box-shadow: 0 0 5px #9effb3;
+}
+
+.messages{
+    flex:0 0 40%;
+    padding: 50px;
+    align-self: flex-end;
+    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: fit-content;
+}
+
+
+.textarea{
+    width: 100%;
+    display: flex;
+    padding-top: 30px;
+}
+
+.input{
+    padding: 0px 20px;
+    flex: 1 1 100%;
+    border-radius: 30px 0 0 30px;
+    border: 1px solid #8d9289;
+}
+
+.button{
+    padding: 10px 20px;
+    border: 1px solid #8d9289;
+    border-radius: 0 30px 30px 0;
+    background-color: #283618;
+    color: #fff;
+}
+
+
+.input:focus {
+    outline: none;
+    border: 1px solid #344e41;
+}

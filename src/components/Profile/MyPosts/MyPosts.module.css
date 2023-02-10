@@ -1,0 +1,44 @@
+.my_posts{
+    padding: 40px;
+}
+
+.title{
+    padding-bottom: 5px;
+    border-bottom: 1px solid #243119;
+}
+
+.input{
+    width: 40%;
+    border: 1px solid lightgray;
+    padding: 10px;
+    border-radius: 30px;
+    margin-right: 15px;
+    transition: all 0.3s ease 0s;
+}
+
+.input:hover{
+    border: 1px solid #000;
+}
+
+.button{
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 30px;
+    border: 1px solid #243119;
+    background-color: #629460;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease 0s;
+    margin-bottom: 50px;
+}
+
+.button:hover{
+    background-color: #718355;
+    transform: scale(1.2);
+}
+
+.posts{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
