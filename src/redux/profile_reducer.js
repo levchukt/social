@@ -13,19 +13,27 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionsTypes.addPost:
-            let newPost = {
-                id: 3,
-                text: state.newMessage,
-                likes: 0
-            };
+      case actionsTypes.addPost: {
+        const newState = { ...state };
 
-            state.posts.push(newPost);
-            state.newMessage = '';
-            return state;
-        case actionsTypes.updateText:
-            state.newMessage = action.newText;
-            return state;
+        let newPost = {
+          id: 3,
+          text: newState.newMessage,
+          likes: 0
+        };
+
+        newState.posts.push(newPost);
+        newState.newMessage = '';
+
+        return newState;
+      }
+      case actionsTypes.updateText: {
+        const newState = { ...state }
+
+        newState.newMessage = action.newText;
+        
+        return newState;
+      }
         default:
             return state;
     }

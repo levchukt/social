@@ -2,7 +2,6 @@ import s from './Dialogs.module.css';
 import React from 'react';
 
 const Dialogs = (props) => {
-
     let onaddMessage = () => {
         props.addMessage()
 
@@ -13,6 +12,7 @@ const Dialogs = (props) => {
         props.updateNewMessage(text)
     }
 
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs__chats}>
@@ -22,7 +22,7 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {props.messages}
                 <div className={s.textarea}>
-                    <input type="text" onChange={onupdateNewMessage} value={props.newMessage} className={s.input} />
+                    <input type="text" onChange={onupdateNewMessage} value={props.dialogsPage.newMessage} className={s.input} />
                     <button className={s.button} onClick={onaddMessage} type="button">Send</button>
                 </div>
                 

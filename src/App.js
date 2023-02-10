@@ -19,7 +19,7 @@ function App(props) {
         <Header />
         <div className='app__wrapper'>
           <div className='menu_block'>
-            <Menu sections={props.state.navbar.sections} />
+            <Menu sections={store.getState().navbar.sections} />
           </div>
           <div className='app__content'>
             <Routes>
