@@ -6,19 +6,15 @@ import React from 'react'
 
 class Users extends React.Component{
     
-
-    getUsers = () => {
-        if (this.props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+    componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
                 .then(responce => {
                     this.props.setUsers(responce.data.items)
                 })
-        }
     }
 
     render() {
         return (<div>
-            <button onClick={this.getUsers}>set</button>
             {
                 this.props.users.map((user) => {
                     return (
