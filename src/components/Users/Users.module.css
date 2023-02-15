@@ -7,3 +7,12 @@
 .wrapper{
     display: flex;
 }
+
+.selectedPage{
+    font-weight: 700;
+    color: lightgreen;
+}
+
+.pageNumber{
+    color: rgb(202, 247, 0);
+}

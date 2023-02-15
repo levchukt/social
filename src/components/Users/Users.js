@@ -7,14 +7,40 @@ import React from 'react'
 class Users extends React.Component{
     
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
                 .then(responce => {
-                    this.props.setUsers(responce.data.items)
+                    this.props.setUsers(responce.data.items);
+                    this.props.setTotalUsersCount(responce.data.totalCount);
+                })
+    };
+
+    setCurrentPage = (page) => {
+        this.props.setCurrentPage(page);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+                .then(responce => {
+                    this.props.setUsers(responce.data.items);
                 })
     }
 
     render() {
+        const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+        let pages = [];
+
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
+        let curP = this.props.currentPage;
+        let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
+        let curPL = curP + 5;
+        let slicedPages = pages.slice(curPF, curPL);
+
         return (<div>
+            <div className={s.usersPages}>
+                {slicedPages.map(page => {
+
+                    return <span onClick={() =>{this.setCurrentPage(page)}} className={this.props.currentPage === page ? s.selectedPage : s.pageNumber}>{page}</span>
+                })}
+            </div>
             {
                 this.props.users.map((user) => {
                     return (
