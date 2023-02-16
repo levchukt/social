@@ -29,7 +29,7 @@ const Users = (props) => {
                         <div key={user.id} className={s.wrapper}>
                             <div>
                                 <img src={user.photos.small != null ? user.photos.small : userAvatar} className={s.avatar} alt='Avatar' />
-                                {user.followed ? <button onClick={() => props.unfollowUser(user.id)}>Unfollow</button> : <button onClick={() => props.followUser(user.id)}>Follow</button>}
+                                {user.followed ? <button onClick={() => props.unfollow(user.id)}>Unfollow</button> : <button onClick={() => props.follow(user.id)}>Follow</button>}
                             
                             </div>
                             <div>
