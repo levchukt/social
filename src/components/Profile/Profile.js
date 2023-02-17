@@ -7,7 +7,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 export const Profile = (props) => {
     return (
         <div className={styles.mainContent}>
-            <ProfileInfo profile={props.profile} />
+            <ProfileInfo profile={props.profile} router={props.router} />
             <MyPostsContainer />
         </div>
     )

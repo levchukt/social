@@ -24,7 +24,7 @@ function App(props) {
           </div>
           <div className='app__content'>
             <Routes>
-              <Route path="/profile/*" element={<ProfileContainer />} />
+              <Route path="/profile/:userId?" element={<ProfileContainer />} />
               <Route path="/messages/*" element={<DialogsContainer  /> } />
               <Route path="/users/*" element={<UsersContainer  /> } />
             </Routes>
