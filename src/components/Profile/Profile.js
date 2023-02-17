@@ -7,8 +7,8 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 export const Profile = (props) => {
     return (
         <div className={styles.mainContent}>
-            <ProfileInfo user='lllevchuk'/>
-            <MyPostsContainer store={props.store} />
+            <ProfileInfo profile={props.profile} />
+            <MyPostsContainer />
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import './App.css';
 import { Header } from './components/Header/Header';
-import { Profile } from './components/Profile/Profile';
 import { Menu } from './components/Navbar/Menu';
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import {
@@ -10,6 +9,7 @@ import {
 } from "react-router-dom";
 import store from './redux/redux_store';
 import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 
 
@@ -24,9 +24,9 @@ function App(props) {
           </div>
           <div className='app__content'>
             <Routes>
-              <Route path="/profile" element={<Profile store={store} />} />
-              <Route path="/messages/*" element={<DialogsContainer store={store} /> } />
-              <Route path="/users/*" element={<UsersContainer store={store} /> } />
+              <Route path="/profile/*" element={<ProfileContainer />} />
+              <Route path="/messages/*" element={<DialogsContainer  /> } />
+              <Route path="/users/*" element={<UsersContainer  /> } />
             </Routes>
           </div>
           

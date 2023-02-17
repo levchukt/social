@@ -1,6 +1,7 @@
 let actionsTypes = {
   addPost: 'ADD-POST',
   updateText: 'UPDATE-POST-TEXT',
+  setProfile: 'SET_PROFILE'
 }
 
 const initialState = {
@@ -9,6 +10,7 @@ const initialState = {
       { id: 2, text: 'Working', likes: 10 }
   ],
   newMessage: '',
+  profile: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -32,6 +34,12 @@ const profileReducer = (state = initialState, action) => {
           newMessage: action.newText
         };
       }
+      case actionsTypes.setProfile: {
+        return {
+          ...state,
+          profile: action.profile
+        };
+      }
         default:
             return state;
     }
@@ -46,6 +54,13 @@ export const updatePostTextActionCreator = (text) => {
   return {
     type: actionsTypes.updateText,
     newText: text
+  }
+}
+
+export const setProfile = (profile) => {
+  return {
+    type: actionsTypes.setProfile,
+    profile
   }
 }
 
