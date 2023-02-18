@@ -1,5 +1,4 @@
 import './App.css';
-import { Header } from './components/Header/Header';
 import { Menu } from './components/Navbar/Menu';
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import {
@@ -10,6 +9,7 @@ import {
 import store from './redux/redux_store';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 
 
@@ -17,7 +17,7 @@ function App(props) {
   return (
     <Router>
       <div className="app">
-        <Header />
+        <HeaderContainer />
         <div className='app__wrapper'>
           <div className='menu_block'>
             <Menu sections={store.getState().navbar.sections} />
