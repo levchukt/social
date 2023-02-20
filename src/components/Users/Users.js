@@ -29,6 +29,7 @@ const Users = (props) => {
             </div>
             {
                 props.users.map((user) => {
+                    console.log(props.followingProgress);
                     return (
                         <div key={user.id} className={s.wrapper}>
                             <div>
@@ -36,19 +37,29 @@ const Users = (props) => {
                                     <img src={user.photos.small != null ? user.photos.small : userAvatar} className={s.avatar} alt='Avatar' />
                                 </NavLink>
                                 {user.followed
-                                    ? <button onClick={() => usersAPI.unfollow(user.id).then(responce => {
-                                        if (responce.data.resultCode === 0) {
-                                                console.log(responce);
-                                                props.unfollow(user.id) 
-                                            }
-                                        })}>Unfollow</button>
-                                    : <button onClick={() => usersAPI.follow(user.id)
-                                        .then(responce => {
-                                            console.log(responce);
+                                    ? <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
+                                        props.toggleFollowing(true, user.id)
+                                        usersAPI.unfollow(user.id).then(responce => {
                                             if (responce.data.resultCode === 0) {
-                                                props.follow(user.id)
+                                                props.unfollow(user.id)
+                                            
                                             }
-                                        })}>Follow</button>}
+                                            props.toggleFollowing(false, user.id)
+                                        })
+                                    }}>Unfollow</button>
+                                    : <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
+                                        props.toggleFollowing(true, user.id)
+                                        usersAPI.follow(user.id)
+                                            .then(responce => {
+                                                
+                                                console.log(responce);
+                                                if (responce.data.resultCode === 0) {
+                                                    props.follow(user.id)
+                                                
+                                                }
+                                                props.toggleFollowing(false, user.id)
+                                            })
+                                    }}>Follow</button>}
                             
                             </div>
                             <div>

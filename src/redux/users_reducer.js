@@ -4,13 +4,15 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_LOADING = 'TOGGLE_LOADING';
+const TOGGLE_FOLLOWING = 'TOGGLE_FOLLOWING';
 
 const initialState = {
     users: [],
     pageSize: 8,
     totalUsersCount: 100,
     currentPage: 1,
-    isLoading: false
+    isLoading: false,
+    followingProgress: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -60,6 +62,14 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: action.isLoading
             }
+        case TOGGLE_FOLLOWING:
+            console.log(state.followingProgress);
+            return {
+                ...state,
+                followingProgress: action.isLoading ?
+                    [...state.followingProgress, action.userId]
+                    :state.followingProgress.filter(id => id !== action.userId)
+            }
         default:
             return state
     }
@@ -99,6 +109,13 @@ export const toggleLoading = (isLoading) => {
     return {
         type: TOGGLE_LOADING,
         isLoading: isLoading
+    }
+}
+export const toggleFollowing = (isLoading, userId) => {
+    return {
+        type: TOGGLE_FOLLOWING,
+        isLoading: isLoading,
+        userId: userId
     }
 }
 
