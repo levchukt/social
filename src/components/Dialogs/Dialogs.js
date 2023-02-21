@@ -1,5 +1,6 @@
 import s from './Dialogs.module.css';
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 
 const Dialogs = (props) => {
     let onaddMessage = () => {
@@ -12,7 +13,9 @@ const Dialogs = (props) => {
         props.updateNewMessage(text)
     }
 
-
+    if (!props.isAuth) {
+        return <Navigate to={'/login'} />
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs__chats}>
@@ -29,6 +32,10 @@ const Dialogs = (props) => {
             </div>
         </div>
     )
+    
+
+
+    
 }
 
 export default Dialogs;

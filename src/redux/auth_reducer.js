@@ -29,8 +29,10 @@ export const login = () => {
     return (dispatch) => {
         authAPI.login()
             .then(responce => {
-            const { id, login, email } = responce.data.data;
-            dispatch(setUserData(id, login, email))
+                if (responce.data.resultCode === 0) {
+                    const { id, login, email } = responce.data.data;
+                    dispatch(setUserData(id, login, email))
+                }
         })
     }
 }
