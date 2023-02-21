@@ -3,7 +3,6 @@ import s from './Users.module.css'
 import userAvatar from '../../img/avatar.jpg'
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../api/api';
 
 const Users = (props) => {
 
@@ -29,7 +28,6 @@ const Users = (props) => {
             </div>
             {
                 props.users.map((user) => {
-                    console.log(props.followingProgress);
                     return (
                         <div key={user.id} className={s.wrapper}>
                             <div>
@@ -38,27 +36,11 @@ const Users = (props) => {
                                 </NavLink>
                                 {user.followed
                                     ? <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
-                                        props.toggleFollowing(true, user.id)
-                                        usersAPI.unfollow(user.id).then(responce => {
-                                            if (responce.data.resultCode === 0) {
-                                                props.unfollow(user.id)
-                                            
-                                            }
-                                            props.toggleFollowing(false, user.id)
-                                        })
+                                        props.unfollow(user.id)
+                                        
                                     }}>Unfollow</button>
                                     : <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
-                                        props.toggleFollowing(true, user.id)
-                                        usersAPI.follow(user.id)
-                                            .then(responce => {
-                                                
-                                                console.log(responce);
-                                                if (responce.data.resultCode === 0) {
-                                                    props.follow(user.id)
-                                                
-                                                }
-                                                props.toggleFollowing(false, user.id)
-                                            })
+                                        props.follow(user.id)
                                     }}>Follow</button>}
                             
                             </div>

@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const FOLLOW = 'FOLLOW_USER';
 const UNFOLLOW = 'UNFOLLOW_USER';
 const SET_USERS = 'SET_USERS';
@@ -63,7 +65,6 @@ const usersReducer = (state = initialState, action) => {
                 isLoading: action.isLoading
             }
         case TOGGLE_FOLLOWING:
-            console.log(state.followingProgress);
             return {
                 ...state,
                 followingProgress: action.isLoading ?
@@ -75,13 +76,13 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export const follow = (userId) => {
+export const followUser = (userId) => {
     return {
         type: FOLLOW,
         userId: userId
     }
 }
-export const unfollow = (userId) => {
+export const unfollowUser = (userId) => {
     return {
         type: UNFOLLOW,
         userId: userId
@@ -116,6 +117,43 @@ export const toggleFollowing = (isLoading, userId) => {
         type: TOGGLE_FOLLOWING,
         isLoading: isLoading,
         userId: userId
+    }
+}
+
+export const getUsers = (currentPage, pageSize,) => {
+    return (dispatch) => {
+        dispatch(setCurrentPage(currentPage));
+        dispatch(toggleLoading(true))
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setUsers(data.items));
+            dispatch(toggleLoading(false));
+            dispatch(setTotalUsersCount(data.totalCount));
+        })
+    }
+}
+
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowing(true, userId))
+        usersAPI.unfollow(userId).then(responce => {
+            if (responce.data.resultCode === 0) {
+                dispatch(unfollowUser(userId))
+                                            
+            }
+            dispatch(toggleFollowing(false, userId))
+        })
+    }
+}
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowing(true, userId))
+        usersAPI.follow(userId).then(responce => {
+            if (responce.data.resultCode === 0) {
+                dispatch(followUser(userId))
+                                            
+            }
+            dispatch(toggleFollowing(false, userId))
+        })
     }
 }
 

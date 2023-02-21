@@ -1,3 +1,5 @@
+import { profileAPI } from "../api/api";
+
 let actionsTypes = {
   addPost: 'ADD-POST',
   updateText: 'UPDATE-POST-TEXT',
@@ -61,6 +63,18 @@ export const setProfile = (profile) => {
   return {
     type: actionsTypes.setProfile,
     profile
+  }
+}
+
+export const getProfile = (userId) => {
+  return (dispatch) => {
+    if (!userId) {
+      userId = 2;
+    }
+    profileAPI.setProfile(userId)
+      .then(responce => {
+        dispatch(setProfile(responce.data));
+      })
   }
 }
 
