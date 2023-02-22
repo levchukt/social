@@ -29,15 +29,6 @@ class ProfileContainer extends React.Component  {
 
 let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
 
-    
-//     (props) => {
-//     if (!this.props.isAuth) {
-//         return <Navigate to={'/login'} />
-//     }
-
-//     return <ProfileContainer {...props} />
-// }
-
 function withRouter(Component) {
     function ComponentWithRouterProp(props) {
         let location = useLocation();
