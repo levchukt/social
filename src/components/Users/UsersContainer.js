@@ -5,6 +5,7 @@ import React from 'react'
 import Users from './Users';
 import Loader from "../Common/Loader";
 import { withAuthRedirect } from "../hoc/authRedirect";
+import { compose } from "redux";
 
 class UsersContainer extends React.Component{
     
@@ -49,8 +50,12 @@ const mapStateToProps = (state) => {
     }
 }
     
-export default withAuthRedirect(connect(mapStateToProps, {
+export default compose(
+    connect(mapStateToProps, {
     follow,
     unfollow,
     getUsers
-})(UsersContainer));
+    }),
+    withAuthRedirect
+)(UsersContainer)
+
