@@ -6,7 +6,7 @@ const initialValues = {
 };
 
 const onSubmit = values => {
-    console.log(values.login);
+    console.log(values);
 };
 
 const validate = values => {
@@ -24,7 +24,6 @@ const validate = values => {
 
 
 const LoginForm = (props) => {
-
     return <Formik initialValues={initialValues} onSubmit={onSubmit} validate={validate}>
         <Form>
             <label htmlFor="login">Login</label>
@@ -36,7 +35,11 @@ const LoginForm = (props) => {
             <Field type={'text'}
                 id={'password'}
                 name={'password'} />
-            <ErrorMessage name={'password'}/>
+            <ErrorMessage name={'password'} />
+            <label htmlFor="remember">Remember me</label>
+            <Field type={'checkbox'}
+                id={'remember'}
+                name={'remember'} />
             <button type="submit">Login</button>
         </Form>
     </Formik>
@@ -47,6 +50,7 @@ const LoginForm = (props) => {
 
 
 const LoginPage = (props) => {
+    
     return <div>
         <h1>Login</h1>
         <LoginForm />
