@@ -9,7 +9,6 @@ const initialState = {
       { id: 2, text: 'How are you' },
       { id: 3, text: '?' },
   ],
-  newMessage: '',
   chats: [
     { id: 1, name: 'Taras' },
     { id: 2, name: 'Nazar' },
@@ -25,19 +24,12 @@ const dialogsReducer = (state = initialState, action) => {
       case actionsTypes.addMessage: { 
         let newMessage = {
           id: 4,
-          text: state.newMessage
+          text: action.text
         }
       
         return {
           ...state,
-          messages: [...state.messages, newMessage],
-          newMessage: ''
-        };
-      }
-      case actionsTypes.updateMessage: {
-        return {
-          ...state,
-          newMessage: action.newText
+          messages: [...state.messages, newMessage]
         };
       }
         default:
@@ -45,15 +37,10 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessageActionCreator = () => {
+export const addMessageActionCreator = (text) => {
   return {
-    type: actionsTypes.addMessage
-  }
-}
-export const updateMessageTextActionCreator = (text) => {
-  return {
-    type: actionsTypes.updateMessage,
-    newText: text
+    type: actionsTypes.addMessage,
+    text
   }
 }
 

@@ -1,16 +1,12 @@
 import s from './Dialogs.module.css';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import AddMessageForm from './AddMessageForm';
 
 const Dialogs = (props) => {
-    let onaddMessage = () => {
-        props.addMessage()
+    let onSubmit = (text) => {
+        props.addMessage(text)
 
-    }
-
-    const onupdateNewMessage = (e) => {
-        let text = e.target.value;
-        props.updateNewMessage(text)
     }
 
     if (!props.isAuth) {
@@ -25,8 +21,9 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {props.messages}
                 <div className={s.textarea}>
-                    <input type="text" onChange={onupdateNewMessage} value={props.dialogsPage.newMessage} className={s.input} />
-                    <button className={s.button} onClick={onaddMessage} type="button">Send</button>
+                    {/* <input type="text" onChange={onupdateNewMessage} value={props.dialogsPage.newMessage} className={s.input} />
+                    <button className={s.button} onClick={onaddMessage} type="button">Send</button> */}
+                    <AddMessageForm onSubmit={onSubmit} />
                 </div>
                 
             </div>
