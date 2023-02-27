@@ -1,19 +1,18 @@
 import { Formik, Form, Field, ErrorMessage } from "formik"
+import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { login } from "../../redux/auth_reducer";
 
 const initialValues = {
-    login: '',
+    email: '',
     password: ''
-};
-
-const onSubmit = values => {
-    console.log(values);
 };
 
 const validate = values => {
     let errors = {}
 
-    if (!values.login) {
-        errors.login = 'reqiured'
+    if (!values.email) {
+        errors.email = 'reqiured'
     }
     if (!values.password) {
         errors.password = 'reqiured'
@@ -24,22 +23,22 @@ const validate = values => {
 
 
 const LoginForm = (props) => {
-    return <Formik initialValues={initialValues} onSubmit={onSubmit} validate={validate}>
+    return <Formik initialValues={initialValues} onSubmit={props.onSubmit} validate={validate}>
         <Form>
-            <label htmlFor="login">Login</label>
+            <label htmlFor="email">Login</label>
             <Field type={'text'}
-                id={'login'}
-                name={'login'} />
-            <ErrorMessage name={'login'} />
+                id={'email'}
+                name={'email'} />
+            <ErrorMessage name={'email'} />
             <label htmlFor="password">Password</label>
-            <Field type={'text'}
+            <Field type={'password'}
                 id={'password'}
                 name={'password'} />
             <ErrorMessage name={'password'} />
-            <label htmlFor="remember">Remember me</label>
+            <label htmlFor="rememberMe">Remember me</label>
             <Field type={'checkbox'}
-                id={'remember'}
-                name={'remember'} />
+                id={'rememberMe'}
+                name={'rememberMe'} />
             <button type="submit">Login</button>
         </Form>
     </Formik>
@@ -47,14 +46,25 @@ const LoginForm = (props) => {
 
 
 
-
-
 const LoginPage = (props) => {
+
+    const onSubmit = (values) => {
+        props.login(values.email, values.password, values.rememberMe)
+    }
     
+    if (props.isAuth) {
+        return <Navigate to='/profile' />
+    }
+
     return <div>
         <h1>Login</h1>
-        <LoginForm />
+        <LoginForm onSubmit={onSubmit} />
     </div>
 }
 
-export default LoginPage;
+
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth  
+})
+
+export default connect(mapStateToProps, {login})(LoginPage);
