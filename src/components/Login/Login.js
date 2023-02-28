@@ -2,45 +2,43 @@ import { Formik, Form, Field, ErrorMessage } from "formik"
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { login } from "../../redux/auth_reducer";
+import * as Yup from 'yup';
+import styles from './LoginStyles.module.css'
 
 const initialValues = {
     email: '',
     password: ''
 };
 
-const validate = values => {
-    let errors = {}
-
-    if (!values.email) {
-        errors.email = 'reqiured'
-    }
-    if (!values.password) {
-        errors.password = 'reqiured'
-    }
-
-    return errors;
-};
-
+const validationSchema = Yup.object({
+    email: Yup.string().email('Invalid email adress').required('Required'),
+    password: Yup.string().required('Required')
+})
 
 const LoginForm = (props) => {
-    return <Formik initialValues={initialValues} onSubmit={props.onSubmit} validate={validate}>
-        <Form>
-            <label htmlFor="email">Login</label>
-            <Field type={'text'}
-                id={'email'}
-                name={'email'} />
-            <ErrorMessage name={'email'} />
-            <label htmlFor="password">Password</label>
-            <Field type={'password'}
-                id={'password'}
-                name={'password'} />
-            <ErrorMessage name={'password'} />
-            <label htmlFor="rememberMe">Remember me</label>
-            <Field type={'checkbox'}
-                id={'rememberMe'}
-                name={'rememberMe'} />
-            <button type="submit">Login</button>
-        </Form>
+    return <Formik initialValues={initialValues} validateOnBlur onSubmit={props.onSubmit} validationSchema={validationSchema}>
+        {({status }) => (
+            <Form className={styles.form}>
+                <div className={styles.error}>{status}</div>
+                <label htmlFor="email">Login</label>
+                <Field className={styles.input} type={'text'}
+                    id={'email'}
+                    name={'email'} />
+                <div className={styles.error}><ErrorMessage name={'email'} /></div >
+                <label htmlFor="password">Password</label>
+                <Field className={styles.input} type={'password'}
+                    id={'password'}
+                    name={'password'} />
+                <div className={styles.error}><ErrorMessage name={'password'} /></div >
+                <div className={styles.checkboxCnt}>
+                    <label htmlFor="rememberMe">Remember me</label>
+                    <Field className={styles.checkbox} type={'checkbox'}
+                        id={'rememberMe'}
+                        name={'rememberMe'} />
+                </div>
+                <button className={styles.button} type="submit">Login</button>
+            </Form>
+        )}
     </Formik>
 }
 
@@ -48,16 +46,17 @@ const LoginForm = (props) => {
 
 const LoginPage = (props) => {
 
-    const onSubmit = (values) => {
-        props.login(values.email, values.password, values.rememberMe)
+    const onSubmit = (values, {setSubmitting, setStatus}) => {
+        props.login(values.email, values.password, values.rememberMe, setStatus);
+        setSubmitting(false)
     }
     
     if (props.isAuth) {
         return <Navigate to='/profile' />
     }
 
-    return <div>
-        <h1>Login</h1>
+    return <div className={styles.loginPage}>
+        <h1 className={styles.title}>Log into your account</h1>
         <LoginForm onSubmit={onSubmit} />
     </div>
 }

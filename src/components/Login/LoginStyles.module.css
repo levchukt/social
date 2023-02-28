@@ -1,0 +1,54 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    
+    border: 1px solid rgb(50, 83, 69);
+    padding: 30px;
+    border-radius: 30px;
+    width: 25%;
+}
+
+.loginPage{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title{
+    margin-bottom: 40px;
+}
+
+.form label{
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.input{
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid rgb(50, 83, 69);
+    margin-bottom: 15px;
+}
+
+.error{
+    color: red;
+    font-size: 14px;
+}
+
+.checkboxCnt{
+    margin-bottom: 15px;
+}
+
+.checkbox{
+    margin-left: 10px;
+}
+
+.button{
+    border-radius: 30px;
+    padding: 10px;
+    border: 1px solid #8d9289;
+    background-color: #588157;
+    color: #ffffff;
+}
