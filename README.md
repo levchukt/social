@@ -1,5 +1,5 @@
-This is my first big React project. It`s a some kind of social media.
-It`s not a final stage, i'm currently working on it
+`This is my first big React project`. It's a some kind of social media.
+It's not a final stage, i'm currently working on it
 
 ## Available Scripts
 
