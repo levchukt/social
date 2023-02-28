@@ -11,8 +11,8 @@ import { compose } from 'redux';
 const mapStateToProps = (state) => {
     return {
         dialogsPage: state.dialogsPage,
-        chats: state.dialogsPage.chats.map((chat) => <DialogItem name={chat.name} id={chat.id} />),
-        messages: state.dialogsPage.messages.map((message) => <Message text={message.text} id={message.id} />),
+        chats: state.dialogsPage.chats.map((chat) => <DialogItem key={chat.id} name={chat.name} id={chat.id} />),
+        messages: state.dialogsPage.messages.map((message) => <Message key={message.id} text={message.text} id={message.id} />),
         isAuth: state.auth.isAuth
     }
 };

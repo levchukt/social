@@ -13,20 +13,26 @@ import LoginPage from './components/Login/Login';
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getAuthUserData } from './redux/auth_reducer';
 import {
     useLocation,
     useNavigate,
     useParams,
 } from "react-router-dom";
+import { initializeApp } from './redux/app_reducer';
+import Loader from './components/Common/Loader';
 
 
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.getAuthUserData()
+    this.props.initializeApp();
   }
+  
   render() {
+    if (!this.props.initialized) {
+      return <Loader />
+    }
+
     return (
         <div className="app">
           <HeaderContainer />
@@ -65,7 +71,11 @@ function withRouter(Component) {
     return ComponentWithRouterProp;
 }
 
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized
+})
+
 export default compose(
   withRouter,
-  connect(null, {getAuthUserData})
+  connect(mapStateToProps, {initializeApp})
 )(App);
