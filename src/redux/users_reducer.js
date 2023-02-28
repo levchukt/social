@@ -120,10 +120,11 @@ export const toggleFollowing = (isLoading, userId) => {
     }
 }
 
-export const getUsers = (currentPage, pageSize,) => {
+export const requestUsers = (currentPage, pageSize,) => {
     return (dispatch) => {
-        dispatch(setCurrentPage(currentPage));
         dispatch(toggleLoading(true))
+        dispatch(setCurrentPage(currentPage));
+        
         usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(setUsers(data.items));
             dispatch(toggleLoading(false));
