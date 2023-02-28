@@ -2,7 +2,6 @@ import './App.css';
 import { Menu } from './components/Navbar/Menu';
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import {
-  BrowserRouter as Router,
   Route,
   Routes
 } from "react-router-dom";
@@ -11,31 +10,62 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
+import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { getAuthUserData } from './redux/auth_reducer';
+import {
+    useLocation,
+    useNavigate,
+    useParams,
+} from "react-router-dom";
 
 
 
-function App(props) {
-  return (
-    <Router>
-      <div className="app">
-        <HeaderContainer />
-        <div className='app__wrapper'>
-          <div className='menu_block'>
-            <Menu sections={store.getState().navbar.sections} />
-          </div>
-          <div className='app__content'>
-            <Routes>
-              <Route path="/profile/:userId?" element={<ProfileContainer />} />
-              <Route path="/messages/*" element={<DialogsContainer  /> } />
-              <Route path="/users/*" element={<UsersContainer  /> } />
-              <Route path="/login/*" element={<LoginPage  /> } />
-            </Routes>
-          </div>
+class App extends React.Component {
+  componentDidMount() {
+    this.props.getAuthUserData()
+  }
+  render() {
+    return (
+        <div className="app">
+          <HeaderContainer />
+          <div className='app__wrapper'>
+            <div className='menu_block'>
+              <Menu sections={store.getState().navbar.sections} />
+            </div>
+            <div className='app__content'>
+              <Routes>
+                <Route path="/profile/:userId?" element={<ProfileContainer />} />
+                <Route path="/messages/*" element={<DialogsContainer />} />
+                <Route path="/users/*" element={<UsersContainer />} />
+                <Route path="/login/*" element={<LoginPage />} />
+              </Routes>
+            </div>
           
+          </div>
         </div>
-      </div>
-    </Router>
-  );
+    )
+  }
 }
 
-export default App;
+function withRouter(Component) {
+    function ComponentWithRouterProp(props) {
+        let location = useLocation();
+        let navigate = useNavigate();
+        let params = useParams();
+        return (
+            <Component
+                {...props}
+                router={{ location, navigate, params }}
+            />
+        );
+    }
+
+    return ComponentWithRouterProp;
+}
+
+export default compose(
+  withRouter,
+  connect(null, {getAuthUserData})
+)(App);
