@@ -41,7 +41,8 @@ class App extends React.Component {
               <Menu sections={store.getState().navbar.sections} />
             </div>
             <div className='app__content'>
-              <Routes>
+            <Routes>
+                <Route path='/' element={<div>login</div>} />
                 <Route path="/profile/:userId?" element={<ProfileContainer />} />
                 <Route path="/messages/*" element={<DialogsContainer />} />
                 <Route path="/users/*" element={<UsersContainer />} />
