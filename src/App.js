@@ -20,6 +20,7 @@ import {
 } from "react-router-dom";
 import { initializeApp } from './redux/app_reducer';
 import Loader from './components/Common/Loader';
+import Homepage from './components/Homepage/Homepage';
 
 
 
@@ -42,7 +43,7 @@ class App extends React.Component {
             </div>
             <div className='app__content'>
             <Routes>
-                <Route path='/' element={<div>login</div>} />
+                <Route path='/' element={<Homepage />} />
                 <Route path="/profile/:userId?" element={<ProfileContainer />} />
                 <Route path="/messages/*" element={<DialogsContainer />} />
                 <Route path="/users/*" element={<UsersContainer />} />

@@ -23,18 +23,20 @@ const LoginForm = (props) => {
                 <label htmlFor="email">Login</label>
                 <Field className={styles.input} type={'text'}
                     id={'email'}
-                    name={'email'} />
+                    name={'email'}
+                    placeholder={'free@samuraijs.com'}/>
                 <div className={styles.error}><ErrorMessage name={'email'} /></div >
                 <label htmlFor="password">Password</label>
                 <Field className={styles.input} type={'password'}
                     id={'password'}
-                    name={'password'} />
+                    name={'password'}
+                    placeholder={'free'}/>
                 <div className={styles.error}><ErrorMessage name={'password'} /></div >
                 <div className={styles.checkboxCnt}>
                     <label htmlFor="rememberMe">Remember me</label>
                     <Field className={styles.checkbox} type={'checkbox'}
                         id={'rememberMe'}
-                        name={'rememberMe'} />
+                        name={'rememberMe'}  />
                 </div>
                 <button className={styles.button} type="submit">Login</button>
             </Form>

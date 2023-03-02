@@ -1,0 +1,38 @@
+.homePage{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title{
+    margin-bottom: 50px;
+}
+
+.text{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.data{
+    font-style: italic;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.button{
+    background-color: #588157;
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    padding: 10px 30px;
+    border-radius: 30px;
+    line-height: 1;
+    border: 2px solid rgb(85, 85, 85);
+    transition: all 0.3s ease 0s;
+}
+
+.button:hover{
+    transform: scale(1.2);
+}

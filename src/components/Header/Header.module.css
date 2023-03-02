@@ -3,6 +3,7 @@
     text-align: center;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .header__container{
@@ -13,4 +14,26 @@
     font-size: 24px;
     color: #fff;
     font-weight: 700;
+}
+
+.login{
+    position: absolute;
+    top: 40%;
+    left: 40px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.button{
+    margin-left: 20px;
+    background-color: #a3b18a;
+    border: 1px solid black;
+    padding: 3px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.button:hover{
+    transform: scale(1.1);
 }
