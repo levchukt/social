@@ -82,32 +82,29 @@ export const setProfile = (profile) => {
 }
 
 export const getProfile = (userId) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     
-    profileAPI.setProfile(userId)
-      .then(responce => {
-        dispatch(setProfile(responce.data));
-      })
+    let responce = await profileAPI.setProfile(userId)
+
+    dispatch(setProfile(responce.data));
+      
   }
 }
 export const getStatus = (userId) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     
-    profileAPI.getStatus(userId)
-      .then(responce => {
-        dispatch(setStatus(responce.data));
-      })
+    let responce = await profileAPI.getStatus(userId)
+
+    dispatch(setStatus(responce.data));
   }
 }
 export const updateStatus = (status) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(status)
-      .then(responce => {
-        if (responce.data.resultCode === 0) {
-          dispatch(setStatus(status));
-        }
-        
-      })
+  return async (dispatch) => {
+    let responce = await profileAPI.updateStatus(status)
+      
+    if (responce.data.resultCode === 0) {
+      dispatch(setStatus(status));
+    }
   }
 }
 

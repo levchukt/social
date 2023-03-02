@@ -121,40 +121,37 @@ export const toggleFollowing = (isLoading, userId) => {
 }
 
 export const requestUsers = (currentPage, pageSize,) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleLoading(true))
         dispatch(setCurrentPage(currentPage));
         
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
-            dispatch(setUsers(data.items));
-            dispatch(toggleLoading(false));
-            dispatch(setTotalUsersCount(data.totalCount));
-        })
+        let data = await usersAPI.getUsers(currentPage, pageSize)
+        dispatch(setUsers(data.items));
+        dispatch(toggleLoading(false));
+        dispatch(setTotalUsersCount(data.totalCount));
     }
 }
 
 export const unfollow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleFollowing(true, userId))
-        usersAPI.unfollow(userId).then(responce => {
-            if (responce.data.resultCode === 0) {
-                dispatch(unfollowUser(userId))
+        let responce = await usersAPI.unfollow(userId)
+        if (responce.data.resultCode === 0) {
+            dispatch(unfollowUser(userId))
                                             
-            }
-            dispatch(toggleFollowing(false, userId))
-        })
+        }
+        dispatch(toggleFollowing(false, userId))
     }
 }
 export const follow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleFollowing(true, userId))
-        usersAPI.follow(userId).then(responce => {
-            if (responce.data.resultCode === 0) {
-                dispatch(followUser(userId))
+        let responce = await usersAPI.follow(userId)
+        if (responce.data.resultCode === 0) {
+            dispatch(followUser(userId))
                                             
-            }
-            dispatch(toggleFollowing(false, userId))
-        })
+        }
+        dispatch(toggleFollowing(false, userId))
     }
 }
 
