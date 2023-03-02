@@ -15,8 +15,8 @@ const validationSchema = Yup.object({
     password: Yup.string().required('Required')
 })
 
-const LoginForm = (props) => {
-    return <Formik initialValues={initialValues} validateOnBlur onSubmit={props.onSubmit} validationSchema={validationSchema}>
+const LoginForm = ({onSubmit}) => {
+    return <Formik initialValues={initialValues} validateOnBlur onSubmit={onSubmit} validationSchema={validationSchema}>
         {({status }) => (
             <Form className={styles.form}>
                 <div className={styles.error}>{status}</div>
@@ -46,14 +46,14 @@ const LoginForm = (props) => {
 
 
 
-const LoginPage = (props) => {
+const LoginPage = ({login, isAuth}) => {
 
     const onSubmit = (values, {setSubmitting, setStatus}) => {
-        props.login(values.email, values.password, values.rememberMe, setStatus);
+        login(values.email, values.password, values.rememberMe, setStatus);
         setSubmitting(false)
     }
     
-    if (props.isAuth) {
+    if (isAuth) {
         return <Navigate to='/profile' />
     }
 
