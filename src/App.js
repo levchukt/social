@@ -43,11 +43,11 @@ class App extends React.Component {
             </div>
             <div className='app__content'>
             <Routes>
-                <Route path='/social/' element={<Homepage />} />
-                <Route path="/social/profile/:userId?" element={<ProfileContainer />} />
-                <Route path="/social/messages/*" element={<DialogsContainer />} />
-                <Route path="/social/users/*" element={<UsersContainer />} />
-                <Route path="/social/login/*" element={<LoginPage />} />
+                <Route path='/' element={<Homepage />} />
+                <Route path="/profile/:userId?" element={<ProfileContainer />} />
+                <Route path="/messages/*" element={<DialogsContainer />} />
+                <Route path="/users/*" element={<UsersContainer />} />
+                <Route path="/login/*" element={<LoginPage />} />
               </Routes>
             </div>
           
