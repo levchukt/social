@@ -1,5 +1,5 @@
 let initialState = {
-      sections: ['profile', 'messages', 'news', 'music', 'settings', 'users']
+      sections: ['profile', 'messages', 'users']
     }
 
 const navbarReducer = (state = initialState, action) => {
